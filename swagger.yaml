@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  title: Person API
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://stage2-cj9c.onrender.com
+  variables: {}
+paths:
+  /api:
+    post:
+      tags:
+      - Auth
+      summary: Create Person
+      operationId: CreatePerson
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreatePersonRequest'
+              - example:
+                  email: JosephIsrael206@gmail.com
+                  name: Joseph Israel
+                  mobile: '09069569860'
+                  age: 21
+                  country: Nigeria
+            example:
+              email: JosephIsrael206@gmail.com
+              name: Joseph Israel
+              mobile: '09069569860'
+              age: 21
+              country: Nigeria
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /api/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The user ID
+    get:
+      tags:
+      - Auth
+      summary: Get Person
+      operationId: GetPerson
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - Auth
+      summary: Delete person
+      operationId: Deleteperson
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+      - Auth
+      summary: Update User
+      operationId: UpdateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateUserRequest'
+              - example:
+                  mobile: '09069569806'
+                  age: 21
+                  country: Nigeria
+            example:
+              mobile: '09069569806'
+              age: 21
+              country: Nigeria
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    CreatePersonRequest:
+      title: CreatePersonRequest
+      required:
+      - email
+      - name
+      - mobile
+      - age
+      - country
+      type: object
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+        mobile:
+          type: string
+        age:
+          type: integer
+          format: int32
+        country:
+          type: string
+      example:
+        email: JosephIsrael206@gmail.com
+        name: Joseph Israel
+        mobile: '09069569860'
+        age: 21
+        country: Nigeria
+    UpdateUserRequest:
+      title: UpdateUserRequest
+      required:
+      - mobile
+      - age
+      - country
+      type: object
+      properties:
+        mobile:
+          type: string
+        age:
+          type: integer
+          format: int32
+        country:
+          type: string
+      example:
+        mobile: '09069569806'
+        age: 21
+        country: Nigeria
+tags:
+- name: Misc
+  description: ''
+- name: Auth
+  description: ''
