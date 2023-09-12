@@ -10,6 +10,9 @@ This is a RESTful API that allows you to manage a list of persons with basic inf
   - [Configuration](#configuration)
 - [Usage](#usage)
   - [Endpoints](#endpoints)
+  - [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
 
@@ -43,4 +46,14 @@ For detailed usage examples and request/response details, please refer to https:
 ## UML Diagram -class 
 ![Person class Diagram](https://github.com/lordisrael/Stage3/blob/main/personClassDiagram.drawio.png)
 ## UML Diagram -usecase
-![Person usecase Diagram] (https://github.com/lordisrael/Stage3/blob/main/PersonUseCaseDiagram.drawio.png)
+![Person usecase Diagram](https://github.com/lordisrael/Stage3/blob/main/PersonUseCaseDiagram.drawio.png)
+## Deployment
+The API has been deployed to https://stage2-cj9c.onrender.com.
+
+## Contributing
+Feel free to contribute to this project by opening issues or creating pull requests. Please follow the Contributing Guidelines.
+
+## License
+This project is licensed under the MIT License.
+
+less
