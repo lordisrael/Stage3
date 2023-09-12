@@ -68,7 +68,8 @@ const updatePerson = asyncHandler(async(req, res) => {
   }
 
   if (!updatedPerson) {
-    return res.status(404).json({ message: 'Person not found' });
+    throw new NotFoundError(`Person with name or id: ${param} not found`)
+    //return res.status(404).json({ message: 'Person not found' });
   }
 
   res.status(200).json({ message: 'Person updated', updatedPerson });

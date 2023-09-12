@@ -16,11 +16,23 @@ var personSchema = new mongoose.Schema({
     age: {
         type: Number,
         required: true,
+        validate: {
+          validator: function (value) {
+            return value >= 0;
+          },
+          message: 'Age must be a non-negative integer.',
+        },
     },
-    mobile:{
-        type:String,
-        required:[true, "Input your Mobile number"],
-        unique:true,
+    mobile: {
+        type: String,
+        validate: {
+          validator: function (value) {
+            // Use a regular expression to validate a mobile phone number
+            // This regex example assumes a simple format of 11 digits with optional dashes or spaces
+            return /^[0-9]{11}$/.test(value);
+          },
+          message: 'Mobile number is not valid. It should be an 11-digit number without spaces or dashes.',
+        },
     },
     country:{
         type:String,
