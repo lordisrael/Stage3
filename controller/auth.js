@@ -88,7 +88,6 @@ const deletePerson = asyncHandler(async(req, res) => {
     }
   
     res.status(StatusCodes.OK).json({deletePerson, msg: {msg: 'User deleted'}});
-    
 })
 
 module.exports = {
