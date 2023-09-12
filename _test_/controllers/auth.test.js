@@ -70,6 +70,11 @@ describe('createPerson', () => {
 
 //     // Mock the findById method to return a sample person
 //     const samplePerson = { _id: validObjectId, name: 'John Doe', email: 'johndoe@example.com' };
+
+//     // jest.mock('mongoose');
+//     // const mongoose = require('mongoose');
+//     // const Person = mongoose.model('Person');
+//     Person.findById.mockResolvedValue(samplePerson);
 //     Person.findById.mockResolvedValue(samplePerson);
 
 //     await getPerson(req, res);
