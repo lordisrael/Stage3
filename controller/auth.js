@@ -50,29 +50,65 @@ const getPerson = asyncHandler(async (req, res) => {
         person = await Person.findOne({$or: [{ name: param }, { email: param }]});
     }
     if (!person) {
-      throw new NotFoundError(`Person with name: ${name} not found`);
+      throw new NotFoundError(`Person with name: ${param} not found`);
     }
   
     res.status(StatusCodes.OK).json({ person });
 });
 
 const updatePerson = asyncHandler(async(req, res) => {
-    const {_id: PersonId} = req.params
-    const person = await Person.findByIdAndUpdate({_id: PersonId},
-        {
-            firstname: req.body.firstname,
-            lastname: req.body.lastname
-        },
-        {
-            new: true,
-            runValidators: true
-        })
-    if(!user){
-        throw new NotFoundError(`User with id: ${personId} is not found`)
-    }
-    res.status(StatusCodes.OK).json({person, msg: {msg: 'Person updated'}})
+    // const {_id: PersonId} = req.params
+    // const person = await Person.findByIdAndUpdate({_id: PersonId},
+    //     {
+    //         firstname: req.body.firstname,
+    //         lastname: req.body.lastname
+    //     },
+    //     {
+    //         new: true,
+    //         runValidators: true
+    //     })
+    // if(!user){
+    //     throw new NotFoundError(`User with id: ${personId} is not found`)
+    // }
+    // res.status(StatusCodes.OK).json({person, msg: {msg: 'Person updated'}})
     
-})
+    const { param } = req.params;
+  // Check if the parameter is a valid ObjectId (user ID)
+  const isObjectId = mongoose.Types.ObjectId.isValid(param);
+  let updatedPerson;
+
+  if (isObjectId) {
+    // If it's a valid ObjectId, update by ID
+    updatedPerson = await Person.findByIdAndUpdate(param, /*req.body*/ {
+      age: req.body.age,
+      mobile: req.body.mobile,
+      country: req.body.country
+    }, {
+      new: true,
+      runValidators: true,
+    });
+  } else {
+    // If it's not a valid ObjectId (meaning it's a name or email), update by name/email
+    updatedPerson = await Person.findOneAndUpdate(
+      { $or: [{ name: param }, { email: param }] },
+      /*req.body*/ {
+        age: req.body.age,
+      mobile: req.body.mobile,
+      country: req.body.country
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+  }
+
+  if (!updatedPerson) {
+    return res.status(404).json({ message: 'Person not found' });
+  }
+
+  res.status(200).json({ message: 'Person updated', updatedPerson });
+});
 
 const deletePerson = asyncHandler(async(req, res) => {
     const { param } = req.params;
@@ -84,7 +120,7 @@ const deletePerson = asyncHandler(async(req, res) => {
         person = await Person.findOneAndDelete({$or: [{ name: param }, { email: param }]});
     }
     if (!person) {
-      throw new NotFoundError(`Person with name: ${name} not found`);
+      throw new NotFoundError(`Person with name or id: ${param} not found`);
     }
   
     res.status(StatusCodes.OK).json({deletePerson, msg: {msg: 'User deleted'}});
@@ -100,7 +136,6 @@ const deletePerson = asyncHandler(async(req, res) => {
 module.exports = {
     createPerson,
     getPerson,
-    getAPerson,
     getPeople,
     deletePerson,
     updatePerson
