@@ -19,28 +19,6 @@ const getPeople = asyncHandler(async (req, res) => {
     const people = await Person.find()
     res.status(StatusCodes.OK).json({people})
 })
-
-// const getAPerson = asyncHandler(async(req, res) => {
-//     const {id: personId} = req.params
-//     const getAPerson = await Person.findOne({_id: personId})
-
-//     // const personId = /^[0-9a-fA-F]{24}$/.test(param);
-//     // let person;
-//     // if (personId) {
-//     //     // If it's an ObjectId, find by ID
-//     //     person = await Person.findById(param);
-//     //   } else {
-//     //     // If it's a string, find by name
-//     //     person = await Person.findOne({ name: param });
-//     // }
-
-//     if(!getAPerson){
-//         throw new NotFoundError(`Person with id: ${personId} is not found`)
-//     }
-//     res.status(StatusCodes.OK).json(getAPerson)
-    
-// })
-
 const getPerson = asyncHandler(async (req, res) => {
     const { param } = req.params;
     const isObjectId = mongoose.Types.ObjectId.isValid(param);
@@ -57,20 +35,6 @@ const getPerson = asyncHandler(async (req, res) => {
 });
 
 const updatePerson = asyncHandler(async(req, res) => {
-    // const {_id: PersonId} = req.params
-    // const person = await Person.findByIdAndUpdate({_id: PersonId},
-    //     {
-    //         firstname: req.body.firstname,
-    //         lastname: req.body.lastname
-    //     },
-    //     {
-    //         new: true,
-    //         runValidators: true
-    //     })
-    // if(!user){
-    //     throw new NotFoundError(`User with id: ${personId} is not found`)
-    // }
-    // res.status(StatusCodes.OK).json({person, msg: {msg: 'Person updated'}})
     
     const { param } = req.params;
   // Check if the parameter is a valid ObjectId (user ID)
@@ -124,12 +88,6 @@ const deletePerson = asyncHandler(async(req, res) => {
     }
   
     res.status(StatusCodes.OK).json({deletePerson, msg: {msg: 'User deleted'}});
-    /*const {id: PersonId} = req.params
-    const deletePerson = await Person.findByIdAndDelete({_id: PersonId})
-    if(!deletePerson){
-        throw new NotFoundError(`User with id: ${PersonId} is not found`)
-    }
-    res.status(StatusCodes.OK).json({deletePerson, msg: {msg: 'User deleted'}})*/
     
 })
 

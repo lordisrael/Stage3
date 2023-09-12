@@ -7,7 +7,7 @@ router.post('/', createPerson)
 router.get('/getPerson' ,getPeople)
 router.get('/:param', getPerson)
 router.delete('/:param', deletePerson)
-router.patch('/:id', updatePerson)
+router.patch('/:param', updatePerson)
 
 
 module.exports = router
