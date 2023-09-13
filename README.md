@@ -41,6 +41,15 @@ The API exposes the following endpoints:
 
 
 POST /api/: Create a new person.<br>
+#### Request Body (JSON)
+```json
+{
+    "email" : "JosephIsrael206@gmail.com",
+    "name" : "Joseph Israel",
+    "mobile": "09069569860",
+    "age": 21,
+    "country" : "Nigeria"
+}
 GET /api/:id: Get a single person by ID.<br>
 PATCH /api/:id: Update an existing person's information.<br>
 DELETE /api/:id: Delete a person record by ID.<br>
