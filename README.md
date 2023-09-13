@@ -38,11 +38,51 @@ To run this API, you need to have the following installed on your machine:
 ### Endpoints
 The API exposes the following endpoints:
 
+POST
+Create Person
+https://stage2-cj9c.onrender.com/api/
+﻿
+
+Body
+raw (json)
+json
+{
+    "email" : "JosephIsrael206@gmail.com",
+    "name" : "Joseph Israel",
+    "mobile": "09069569860",
+    "age": 21,
+    "country" : "Nigeria"
+}
+GET
+Get Person
+https://stage2-cj9c.onrender.com/api/6500786907d933945dc28f33
+﻿
+
+DELETE
+Delete person
+https://stage2-cj9c.onrender.com/api/6500786907d933945dc28f33
+﻿
+
+PATCH
+Update User
+https://stage2-cj9c.onrender.com/api/65007f10d6e99c61c733ac0a
+﻿
+
+Body
+raw (json)
+json
+{
+    "mobile": "09069569806",
+    "age": 21,
+    "country" : "Nigeria"
+}
+
 POST /api/: Create a new person.
 GET /api/:id: Get a single person by ID.
 PATCH /api/:id: Update an existing person's information.
 DELETE /api/:id: Delete a person record by ID.
-For detailed usage examples and request/response details, please refer to https://stage2-cj9c.onrender.com
+## Documentation and Testing
+For detailed documentation and request/response details, please refer to https://stage2-cj9c.onrender.com
 ## UML Diagram -class 
 ![Person class Diagram](https://github.com/lordisrael/Stage3/blob/main/personClassDiagram.drawio.png)
 ## UML Diagram -usecase
