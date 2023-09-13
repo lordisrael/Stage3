@@ -11,7 +11,8 @@ const createPerson = asyncHandler(async(req, res) => {
         const person = await Person.create(req.body)
         res.status(StatusCodes.CREATED).json(person)
     } else {
-        throw new ConflictError('Email already Exists')
+        return res.status(StatusCodes.CONFLICT).json('Email already exists')
+        //throw new ConflictError('Email already Exists')
     }
 })
 
